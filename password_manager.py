@@ -1,6 +1,10 @@
 from menu import menu, store, find
+from master import generate_hash, check_hash
 import sys
 
+generate_hash()
+if not check_hash():
+    sys.exit("Wrong Password")
 while True:
     choice = menu()
     if choice == "1":

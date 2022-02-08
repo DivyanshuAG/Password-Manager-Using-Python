@@ -1,14 +1,10 @@
 from encryption import generateKey, encryptPass, decryptPass
 from database_manager import create_table, store_password, find_password
-from master import generate_hash, check_hash
 import subprocess
 
 
 def menu():
     # Creating required files
-    generate_hash()
-    if not check_hash():
-        sys.exit("Wrong Password")
     generateKey()
     create_table()
 
