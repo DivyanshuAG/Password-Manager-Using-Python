@@ -1,4 +1,12 @@
+# Keys
 secret.key
+master.key
+
+# Env
 .venv
+
+# Database
 Manager.db
+
+# Cache
 __pycache__

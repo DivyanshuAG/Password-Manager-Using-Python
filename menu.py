@@ -1,13 +1,25 @@
 from encryption import generateKey, encryptPass, decryptPass
 from database_manager import create_table, store_password, find_password
+from master import generate_hash, check_hash
 import subprocess
 
 
 def menu():
+    # Creating required files
+    generate_hash()
+    if not check_hash():
+        sys.exit("Wrong Password")
     generateKey()
     create_table()
+
+    # Hiding unnecessary files
+    hide_file("master.key")
+    hide_file("secret.key")
+    hide_file("Manager.db")
+
+    # Aesthetics
     print("_" * 40)
-    print("_" * 18 + "Menu" + "_" * 18)
+    print("_" * 18 + "Password Manager" + "_" * 18)
     print("_" * 40)
     print("1. Create New Password")
     print("2. Find a Password for a Service")
@@ -46,3 +58,6 @@ def find():
             "Password has been copied to clipboard",
         )
         print("_" * 40)
+
+def hide_file(filename):
+    subprocess.check_call(["attrib","+H",filename])
