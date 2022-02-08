@@ -1,0 +1,4 @@
+secret.key
+.venv
+Manager.db
+__pycache__
