@@ -12,6 +12,9 @@ Manager.db
 # Cache
 __pycache__
 
+# VSCode
+.vscode
+
 # Exe
 version.txt
 _pyinstaller.py
