@@ -1,5 +1,5 @@
 from menu import menu, store, find
-from master import generate_hash, check_hash
+from encryption import generate_hash, check_hash
 import sys
 
 generate_hash()

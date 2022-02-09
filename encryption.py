@@ -1,10 +1,48 @@
 from cryptography.fernet import Fernet
-from change_attrib import change_file_attribute, read_only
+from dotenv import load_dotenv, set_key, find_dotenv
+import os
+import hashlib
 
 
+# Creating a .env file if not present
+with open(".env", "w") as file:
+    pass
+
+dotenv_file = find_dotenv()
+load_dotenv(dotenv_file)
+
+# Master Password Hash and Check
+def DoesHashExist():
+    try:
+        if os.environ["master"]:
+            return True
+    except:
+        return False
+
+
+def generate_hash():
+    if not DoesHashExist():
+        masterPass = input("Set Master Password: ")
+        print("Please do not forget this key, as your passwords cannot be recovered")
+        sha256_MasterPass = hashlib.sha256(masterPass.encode()).hexdigest()
+        os.environ["master"] = sha256_MasterPass
+        set_key(dotenv_file, "master", os.environ["master"])
+
+
+def check_hash():
+    hash = os.environ["master"]
+    MasterPasswordInputNow = input("Enter the Master Password: ")
+    MasterPasswordInputNowHashed = hashlib.sha256(MasterPasswordInputNow.encode()).hexdigest()
+    if MasterPasswordInputNowHashed == hash:
+        return True
+    else:
+        return False
+
+
+# Secret key Generation
 def DoesKeyExist():
     try:
-        if open("secret.key", "rb").read():
+        if os.environ["key"]:
             return True
     except:
         return False
@@ -13,14 +51,13 @@ def DoesKeyExist():
 def generateKey():
     if not (DoesKeyExist()):
         key = Fernet.generate_key()
-        with open("secret.key", "wb") as file:
-            file.write(key)
-        read_only("secret.key")
-        change_file_attribute("secret.key")
+        key_str = str(key, "utf-8")
+        os.environ["key"] = key_str
+        set_key(dotenv_file, "key", os.environ["key"])
 
 
 def loadKey():
-    key = open("secret.key", "rb").read()
+    key = bytes(os.environ["key"], "utf-8")
     return key
 
 

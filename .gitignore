@@ -4,6 +4,7 @@ master.key
 
 # Env
 .venv
+.env
 
 # Database
 Manager.db
@@ -17,3 +18,4 @@ _pyinstaller.py
 passman.spec
 dist
 build
+upx-3.96-win64

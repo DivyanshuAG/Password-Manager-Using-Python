@@ -1,13 +1,10 @@
 import sys
-import subprocess
 import os
+import win32api
+import win32con
 
 
 def change_file_attribute(filename):
     if sys.platform.startswith("win"):
-        os.system("attrib +s +i +h {}".format(filename))
-
-
-def read_only(filename):
-    if sys.platform.startswith("win"):
-        subprocess.check_call(["attrib", "+r", filename])
+        if not win32api.GetFileAttributes(filename) & win32con.FILE_ATTRIBUTE_SYSTEM:
+            os.system("attrib +s +i +h {}".format(filename))
