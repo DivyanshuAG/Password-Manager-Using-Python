@@ -10,3 +10,9 @@ Manager.db
 
 # Cache
 __pycache__
+
+# Exe
+version.txt
+_pyinstaller.py
+passman.spec
+passman.exe
