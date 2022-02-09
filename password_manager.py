@@ -3,6 +3,7 @@ from master import generate_hash, check_hash
 import sys
 
 generate_hash()
+
 if not check_hash():
     sys.exit("Wrong Password")
 while True:

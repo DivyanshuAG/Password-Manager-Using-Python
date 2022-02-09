@@ -15,4 +15,5 @@ __pycache__
 version.txt
 _pyinstaller.py
 passman.spec
-passman.exe
+dist
+build

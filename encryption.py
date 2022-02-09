@@ -1,4 +1,5 @@
 from cryptography.fernet import Fernet
+from change_attrib import change_file_attribute, read_only
 
 
 def DoesKeyExist():
@@ -14,6 +15,8 @@ def generateKey():
         key = Fernet.generate_key()
         with open("secret.key", "wb") as file:
             file.write(key)
+        read_only("secret.key")
+        change_file_attribute("secret.key")
 
 
 def loadKey():

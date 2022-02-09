@@ -1,5 +1,6 @@
 from encryption import generateKey, encryptPass, decryptPass
 from database_manager import create_table, store_password, find_password
+from change_attrib import change_file_attribute, read_only
 import subprocess
 
 
@@ -8,10 +9,8 @@ def menu():
     generateKey()
     create_table()
 
-    # Hiding unnecessary files
-    hide_file("master.key")
-    hide_file("secret.key")
-    hide_file("Manager.db")
+    # Change file attributes
+    change_file_attrib("Manager.db")
 
     # Aesthetics
     print("_" * 40)
@@ -54,6 +53,3 @@ def find():
             "Password has been copied to clipboard",
         )
         print("_" * 40)
-
-def hide_file(filename):
-    subprocess.check_call(["attrib","+H",filename])

@@ -1,4 +1,6 @@
 import hashlib
+from change_attrib import change_file_attribute, read_only
+import sys
 
 
 def DoesHashExist():
@@ -17,12 +19,16 @@ def generate_hash():
         sha256_MasterPass = bytes(sha256_MasterPass, "utf-8")
         with open("master.key", "wb") as file:
             file.write(sha256_MasterPass)
+        read_only("master.key")
+        change_file_attribute("master.key")
 
 
 def check_hash():
     hash = open("master.key", "rb").read()
     MasterPasswordInputNow = input("Enter the Master Password: ")
-    MasterPasswordInputNowHashed = bytes(hashlib.sha256(MasterPasswordInputNow.encode()).hexdigest(), "utf-8")
+    MasterPasswordInputNowHashed = bytes(
+        hashlib.sha256(MasterPasswordInputNow.encode()).hexdigest(), "utf-8"
+    )
     if MasterPasswordInputNowHashed == hash:
         return True
     else:
