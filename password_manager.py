@@ -1,4 +1,4 @@
-from menu import menu, store, find
+from menu import menu, store, find, find_email
 from encryption import generate_hash, check_hash
 import sys
 
@@ -12,6 +12,8 @@ while True:
         store()
     elif choice == "2":
         find()
+    elif choice == "3":
+        find_email()
     elif choice.lower() == "q":
         sys.exit("Exiting.....")
         print("_" * 40)

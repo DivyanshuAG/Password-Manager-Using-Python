@@ -14,6 +14,7 @@ def create_table():
     connect = conn()
     cursor = connect.cursor()
     cursor.execute(Create)
+    connect.commit()
 
 
 def store_password(password, email, username, siteurl, service):
@@ -31,7 +32,18 @@ def find_password(serviceName):
     search = "SELECT * FROM Accounts WHERE Service LIKE '%{}%'".format(serviceName)
     cursor.execute(search)
     results = cursor.fetchall()
+    connect.commit()
     if not results:
         return ""
     passw = results[0][0]
     return passw
+
+
+def find_using_email(email):
+    connect = conn()
+    cursor = connect.cursor()
+    search = 'SELECT * FROM Accounts WHERE Email = "{}"'.format(email)
+    cursor.execute(search)
+    results = cursor.fetchall()
+    connect.commit()
+    return results

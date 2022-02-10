@@ -5,7 +5,7 @@ import hashlib
 
 
 # Creating a .env file if not present
-with open(".env", "w") as file:
+with open(".env", "a") as file:
     pass
 
 dotenv_file = find_dotenv()
@@ -32,7 +32,9 @@ def generate_hash():
 def check_hash():
     hash = os.environ["master"]
     MasterPasswordInputNow = input("Enter the Master Password: ")
-    MasterPasswordInputNowHashed = hashlib.sha256(MasterPasswordInputNow.encode()).hexdigest()
+    MasterPasswordInputNowHashed = hashlib.sha256(
+        MasterPasswordInputNow.encode()
+    ).hexdigest()
     if MasterPasswordInputNowHashed == hash:
         return True
     else:
