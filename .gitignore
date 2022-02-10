@@ -22,3 +22,6 @@ passman.spec
 dist
 build
 upx-3.96-win64
+
+# Todo
+TODO.txt
