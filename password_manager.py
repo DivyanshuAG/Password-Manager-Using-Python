@@ -1,11 +1,13 @@
-from menu import menu, store, find, find_email
+from menu import menu, store, find, find_email, aesthetics
 from encryption import generate_hash, check_hash
+from colorama import Style
 import sys
 
+aesthetics()
 generate_hash()
-
 if not check_hash():
-    sys.exit("Wrong Password")
+    print(Style.RESET_ALL+"Wrong Password")
+    sys.exit()
 while True:
     choice = menu()
     if choice == "1":
@@ -15,9 +17,9 @@ while True:
     elif choice == "3":
         find_email()
     elif choice.lower() == "q":
+        print(Style.RESET_ALL)
         sys.exit("Exiting.....")
-        print("_" * 40)
     else:
-        print("_" * 40)
+        print("-" * 40)
         print("Please enter a valid option")
-        print("_" * 40)
+        print("-" * 40)

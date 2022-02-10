@@ -5,8 +5,9 @@ from database_manager import (
     find_password,
     find_using_email,
 )
-from change_attrib import change_file_attribute
 import subprocess
+from colorama import Fore, Style
+from change_attrib import change_file_attribute
 
 
 def menu():
@@ -19,9 +20,9 @@ def menu():
     change_file_attribute(".env")
 
     # Aesthetics
-    print("_" * 40)
-    print("_" * 12 + "Password Manager" + "_" * 12)
-    print("_" * 40)
+    print("-" * 40)
+    print("-" * 40)
+    print("-" * 40)
     print("1. Create New Password")
     print("2. Find a Password for a Service")
     print("3. Find All Passwords for an Email")
@@ -74,3 +75,23 @@ def find_email():
             print("-" * 40)
     else:
         print("No Passwords Found")
+
+
+def aesthetics():
+    passMan = """
+ ____               __  __
+|  _ \ __ _ ___ ___|  \/  | __ _ _ __
+| |_) / _` / __/ __| |\/| |/ _` | '_ \\
+|  __/ (_| \__ \__ \ |  | | (_| | | | |
+|_|   \__,_|___/___/_|  |_|\__,_|_| |_|
+
+"""
+    print(Fore.CYAN + "#" * 40)
+    print(passMan)
+    print("#" * 40)
+    print()
+    print(
+        "PassMan, a FOSS Passwords Manager, is a portable software that allows you to effectively encrypt and store your passwords to a database, and retrieve your passwords from said database, with a simple menu based interface\n"
+    )
+    print("#" * 40)
+    print()

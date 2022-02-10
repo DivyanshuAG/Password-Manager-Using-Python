@@ -14,16 +14,18 @@ load_dotenv(dotenv_file)
 # Master Password Hash and Check
 def DoesHashExist():
     try:
-        if os.environ["master"]:
+        if os.environ["master"] != "":
             return True
     except:
         return False
 
 
 def generate_hash():
-    if not DoesHashExist():
+    if DoesHashExist() == False:
+        print("To use PassMan first set your Master Password\n")
         masterPass = input("Set Master Password: ")
-        print("Please do not forget this key, as your passwords cannot be recovered")
+        print("\nPlease do not forget this password, as otherwise your passwords cannot be recovered")
+        print("-" * 40)
         sha256_MasterPass = hashlib.sha256(masterPass.encode()).hexdigest()
         os.environ["master"] = sha256_MasterPass
         set_key(dotenv_file, "master", os.environ["master"])
@@ -32,9 +34,7 @@ def generate_hash():
 def check_hash():
     hash = os.environ["master"]
     MasterPasswordInputNow = input("Enter the Master Password: ")
-    MasterPasswordInputNowHashed = hashlib.sha256(
-        MasterPasswordInputNow.encode()
-    ).hexdigest()
+    MasterPasswordInputNowHashed = hashlib.sha256(MasterPasswordInputNow.encode()).hexdigest()
     if MasterPasswordInputNowHashed == hash:
         return True
     else:
