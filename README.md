@@ -16,6 +16,8 @@ This simple Password Manager in Python allows you to effectively store your pass
 -    This folder is completely portable
 -    If you wish to move your passwords to a different location just transfer the whole folder there
 
+### OR
+
 Clone the project
 
 ```bash
