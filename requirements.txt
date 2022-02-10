@@ -1,4 +1,5 @@
 cffi==1.15.0
+colorama==0.4.4
 cryptography==36.0.1
 pycparser==2.21
 python-dotenv==0.19.2
