@@ -42,6 +42,7 @@ def store():
     encryptedPass = encryptPass(password)
     store_password(encryptedPass, email, username, url, service)
     print("_" * 40)
+    print("Encrypted Password: " + encryptedPass.decode('utf-8'))
     print(
         "Password Encrypted and Stored",
     )
@@ -64,13 +65,13 @@ def find():
 
 
 def find_email():
-    data = ["Password", "Email", "Username", "Url", "Service"]
+    data = ["Encrypted Password", "Email", "Username", "Url", "Service"]
     email = input("Email: ")
     results = find_using_email(email)
     print("-" * 40)
     if results:
         for row in results:
-            for i in range(1, len(row)):
+            for i in range(0, len(row)):
                 print("{}: {}".format(data[i], row[i]))
             print("-" * 40)
     else:
